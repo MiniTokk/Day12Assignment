@@ -1,6 +1,7 @@
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StatusBar } from 'expo-status-bar';
-import react from 'react';
+import react, { useEffect, useState } from 'react';
 import {
     Button,
     View,
@@ -13,6 +14,39 @@ import {
 } from 'react-native';
 import Register from './Register';
 function HomeScreen({ navigation }: any) {
+    const [name, setname] = useState('');
+    const [password, setPassword] = useState("")
+    useEffect(() => {
+        getData();
+    }, []);
+    const getData = () => {
+        try {
+            AsyncStorage.getItem('UserName')
+                .then(value => {
+                    if (value != null) {
+                        setname(value);
+                    }
+                })
+
+        } catch (error) {
+            console.log(error);
+
+        }
+        try {
+            AsyncStorage.getItem('UserPassword')
+                .then(value => {
+                    if (value != null) {
+                        setPassword(value);
+                    }
+                })
+
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    }
+
     return (
 
         <View style={{ flex: 1, backgroundColor: "#e0ffff", justifyContent: "center" }}>
@@ -41,7 +75,7 @@ function HomeScreen({ navigation }: any) {
                     }} placeholder='Enter Password' secureTextEntry={true} ></TextInput>
                     <View style={{
                         padding: 20, borderRadius: 10
-                    }}><Button onPress={() => navigation.navigate('MyanmarLanguage')} title='LOGIN' /></View>
+                    }}><Button onPress={() => navigation.navigate('Profile')} title='LOGIN' /></View>
                 </View>
                 <View style={{ margin: 30 }}>
                     <Text style={{ color: "grey", textAlign: "center", fontSize: 18 }}>If You Don't Have An Account,

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Text, View, TextInput, Button, StyleSheet, Alert, TouchableOpacity, ScrollView } from 'react-native';
 function FormList({ navigation }: any) {
   const [email, setEmail] = useState("")
@@ -11,12 +12,31 @@ function FormList({ navigation }: any) {
   const [phoneError, setphoneError] = useState("")
   const [passwordError, setPasswordError] = useState("")
   const [confirmpasswordError, setconfirmPasswordError] = useState("")
-  const handleSubmit = () => {
+  const emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  const remove = () => {
+    setEmail(""),
+      setname(""),
+      setphone(""),
+      setPassword(""),
+      setconfirmpassword("")
+  }
+
+
+  const handle = async () => {
+
     var nameValid = false;
     if (name.length == 0) {
       setnameError("Enter Full Name");
     }
     else {
+      try {
+        await AsyncStorage.setItem('UserName', name);
+        navigation.navigate('Profile');
+      }
+      catch (error) {
+        console.log(error);
+      }
       setnameError("")
       nameValid = true
     }
@@ -30,7 +50,17 @@ function FormList({ navigation }: any) {
     else if (email.indexOf(' ') >= 0) {
       setEmailError('Email cannot contain spaces');
     }
+    else if (!emailPattern.test(email) && email.length > 0) {
+      setEmailError("Enter a valid email!")
+    }
     else {
+      try {
+        await AsyncStorage.setItem('UserEmail', email);
+        navigation.navigate('Profile');
+      }
+      catch (error) {
+        console.log(error);
+      }
       setEmailError("")
       emailValid = true
     }
@@ -38,8 +68,14 @@ function FormList({ navigation }: any) {
     if (phone.length == 0) {
       setphoneError("Enter a phone number.");
     }
-
     else {
+      try {
+        await AsyncStorage.setItem('UserPhone', phone);
+        navigation.navigate('Profile');
+      }
+      catch (error) {
+        console.log(error);
+      }
       setphoneError("")
       phoneValid = true
     }
@@ -61,7 +97,7 @@ function FormList({ navigation }: any) {
     }
     console.log(confirmpassword)
     console.log(password)
-    var confirmpasswordValid = false;
+    var confirmpasswordValid  = false;
     if (confirmpassword.length == 0) {
       setconfirmPasswordError("Enter Password Confirmation.");
     }
@@ -77,6 +113,10 @@ function FormList({ navigation }: any) {
       confirmpasswordValid = true
     }
   }
+
+ 
+
+
   return (
     <ScrollView style={styles.form}>
       <View style={styles.container}>
@@ -123,11 +163,16 @@ function FormList({ navigation }: any) {
             <Text style={{ color: "red" }}>{confirmpasswordError}</Text>
           }
           {/*<View style={styles.button}><Button onPress={handleSubmit} title='Register' /></View>*/}
-          <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-            <Text style={{ textAlign: "center", fontWeight: "bold", color: "#fff" }}>Register</Text>
-          </TouchableOpacity>
-
+          <View style={{ flexDirection: "row", justifyContent: "center" }}>
+            <TouchableOpacity style={styles.button} onPress={handle}>
+              <Text style={{ textAlign: "center", fontWeight: "bold", color: "#fff" }}>Register</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={remove}>
+              <Text style={{ textAlign: "center", fontWeight: "bold", color: "#fff" }}>Delete</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+
 
       </View>
     </ScrollView>
@@ -158,8 +203,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    width: "45%",
-    marginLeft: "25%",
+   
+    margin:20,
     padding: 10,
     backgroundColor: "#0000ff",
     borderRadius: 10,
