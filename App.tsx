@@ -21,6 +21,7 @@ import Favourites from './screens/Favourites';
 import AboutUs from './screens/AboutUs';
 import CustomDrawer from './components/CustomDrawer';
 import Register from './screens/Register';
+import Profile from './screens/Profile';
 
 
 const Stack = createStackNavigator();
@@ -135,7 +136,7 @@ function thirdScreenStack({ navigation }: any) {
                     headerShown: false,
                     title: 'RefreshData',
                 }} />
-            
+
         </Stack.Navigator>
     );
 }
@@ -255,6 +256,35 @@ function RegisterStack({ navigation }: any) {
         </Stack.Navigator>
     );
 }
+function ProfileStack({ navigation }: any) {
+    return (
+        <Stack.Navigator
+            initialRouteName="Profile"
+            screenOptions={{
+                headerShown: false,
+                headerLeft: () =>
+                    <NavigationDrawerStructure
+                        navigationProps={Profile}
+                    />,
+                headerStyle: {
+                    backgroundColor: '#f4511e',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                    fontWeight: 'bold',
+                }
+            }}>
+            <Stack.Screen
+                name="Profile"
+                component={Profile}
+                options={{
+                    title: 'Profile',
+
+                }} />
+
+        </Stack.Navigator>
+    );
+}
 function App() {
     return (
         <NavigationContainer>
@@ -353,6 +383,20 @@ function App() {
                         (
                             <Image
                                 source={require('./assets/register.png')}
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    marginLeft: 5
+                                }}
+                            />
+                        )
+                    }} />
+                <Drawer.Screen name="Profile" component={ProfileStack}
+                    options={{
+                        drawerIcon: ({ color }) =>
+                        (
+                            <Image
+                                source={require('./assets/user.png')}
                                 style={{
                                     width: 25,
                                     height: 25,
