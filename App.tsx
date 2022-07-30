@@ -48,7 +48,7 @@ const NavigationDrawerStructure = (props: any) => {
     );
 }
 
-function firstScreenStack({ navigation }: any) {
+function FirstScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator initialRouteName="Home">
             <Stack.Screen
@@ -78,7 +78,7 @@ function firstScreenStack({ navigation }: any) {
     );
 }
 
-function secondScreenStack({ navigation }: any) {
+function SecondScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
             initialRouteName="MyanmarLanguage"
@@ -110,7 +110,7 @@ function secondScreenStack({ navigation }: any) {
     );
 }
 
-function thirdScreenStack({ navigation }: any) {
+function ThirdScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
             initialRouteName="RefreshData"
@@ -140,7 +140,7 @@ function thirdScreenStack({ navigation }: any) {
         </Stack.Navigator>
     );
 }
-function fourthScreenStack({ navigation }: any) {
+function FourthScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
             initialRouteName="OtherApps"
@@ -169,7 +169,7 @@ function fourthScreenStack({ navigation }: any) {
         </Stack.Navigator>
     );
 }
-function fifthScreenStack({ navigation }: any) {
+function FifthScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
             initialRouteName="Favourites"
@@ -198,7 +198,7 @@ function fifthScreenStack({ navigation }: any) {
         </Stack.Navigator>
     );
 }
-function sixthScreenStack({ navigation }: any) {
+function SixthScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
             initialRouteName="AboutUs"
@@ -235,7 +235,7 @@ function RegisterStack({ navigation }: any) {
                 headerShown: false,
                 headerLeft: () =>
                     <NavigationDrawerStructure
-                        navigationProps={Register}
+                        navigationProps={navigation}
                     />,
                 headerStyle: {
                     backgroundColor: '#f4511e',
@@ -246,10 +246,10 @@ function RegisterStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="Register"
+                name="RegisterScreen"
                 component={Register}
                 options={{
-                    title: 'Register',
+                    title: 'RegisterScreen',
 
                 }} />
 
@@ -290,7 +290,7 @@ function App() {
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home"
                 drawerContent={props => <CustomDrawer{...props} />}>
-                <Drawer.Screen name="Home" component={firstScreenStack}
+                <Drawer.Screen name="Home" component={FirstScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
@@ -306,7 +306,7 @@ function App() {
                     }}
 
                 />
-                <Drawer.Screen name="Favourites" component={fifthScreenStack}
+                <Drawer.Screen name="Favourites" component={FifthScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
@@ -320,7 +320,7 @@ function App() {
                             />
                         )
                     }} />
-                <Drawer.Screen name="MyanmarLanguage" component={secondScreenStack}
+                <Drawer.Screen name="MyanmarLanguage" component={SecondScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
@@ -334,7 +334,7 @@ function App() {
                             />
                         )
                     }} />
-                <Drawer.Screen name="RefreshData" component={thirdScreenStack}
+                <Drawer.Screen name="RefreshData" component={ThirdScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
@@ -348,7 +348,7 @@ function App() {
                             />
                         )
                     }} />
-                <Drawer.Screen name="OtherApps" component={fourthScreenStack}
+                <Drawer.Screen name="OtherApps" component={FourthScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
@@ -363,7 +363,7 @@ function App() {
                         )
                     }} />
 
-                <Drawer.Screen name="AboutUs" component={sixthScreenStack}
+                <Drawer.Screen name="AboutUs" component={SixthScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
