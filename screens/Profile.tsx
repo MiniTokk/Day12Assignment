@@ -1,7 +1,9 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDrawerStatusFromState } from '@react-navigation/drawer';
+import { CommonActions } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
+import Homescreen from './Homescreen';
 import react, { useEffect, useState } from 'react';
 import {
     Button,
@@ -63,12 +65,11 @@ function Profile({ navigation }: any) {
     }
     const UpdateData = async () => {
         if (name.length == 0) {
-            Alert.alert("Warning!,Please Fill Your Name")
+            Alert.alert("Warning!","Please Fill Your Name")
         }
         else {
             try {
                 await AsyncStorage.setItem('UserName', name);
-                Alert.alert('Success!', 'UserName has been updated.');
 
             }
             catch (error) {
@@ -77,13 +78,12 @@ function Profile({ navigation }: any) {
             }
         }
         if (email.length == 0) {
-            Alert.alert("Warning!,Please Fill Your Email")
+            Alert.alert("Warning!","Please Fill Your Email")
         }
         else {
             try {
-                await AsyncStorage.setItem('UserEmail', email);
-
-                Alert.alert('Success!', 'UserEmail has been updated.');
+                 AsyncStorage.setItem('UserEmail', email);
+                
 
             }
             catch (error) {
@@ -91,14 +91,15 @@ function Profile({ navigation }: any) {
 
             }
         }
+
+        
         if (phone.length == 0) {
-            Alert.alert("Warning!,Please Fill Your Phone")
+           Alert.alert("Warning!","Please Fill Your Phone Number")
         }
         else {
             try {
                 await AsyncStorage.setItem('UserPhone', phone);
-                Alert.alert('Success!', 'UserPhone has been updated.');
-
+               
             }
             catch (error) {
                 console.log(error);
@@ -113,8 +114,8 @@ function Profile({ navigation }: any) {
 
         try {
             await AsyncStorage.clear();
-            Alert.alert('Success!', 'Your Data has been Removed.Please Register Again!');
-            navigation.navigate('Register');
+            Alert.alert('LOG OUT','You have been logged out');
+            navigation.goBack();
         }
         catch (error) {
             console.log(error);
@@ -182,7 +183,7 @@ function Profile({ navigation }: any) {
                         />
                     </View>
                     <View style={{ padding: 10 }}>
-                        <Button title='Remove'
+                        <Button title='Log Out'
                             onPress={RemoveData}
                         />
                     </View>
