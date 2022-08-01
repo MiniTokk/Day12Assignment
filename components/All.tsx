@@ -13,7 +13,7 @@ import {
 import { FlatList } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 
-function OtherApps({ navigation }: any) {
+function User({ navigation }: any) {
     const [name, setname] = useState([
         { name: "JAY", key: "1" },
         { name: "JAKE", key: "2" },
@@ -72,4 +72,4 @@ const styles = StyleSheet.create({
 
     }
 })
-export default OtherApps;
+export default User;

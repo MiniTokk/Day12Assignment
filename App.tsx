@@ -16,7 +16,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Homescreen from './screens/Homescreen';
 import MyanmarLanguage from './screens/MyanmarLanguage';
 import RefreshData from './screens/RefreshData';
-import OtherApps from './screens/OtherApps';
+import User from './screens/User';
 import Favourites from './screens/Favourites';
 import AboutUs from './screens/AboutUs';
 import CustomDrawer from './components/CustomDrawer';
@@ -55,7 +55,7 @@ function FirstScreenStack({ navigation }: any) {
                 name="HomeScreen"
                 component={Homescreen}
                 options={{
-                    headerShown: false,
+
 
                     title: 'Home',
                     headerLeft: () =>
@@ -65,7 +65,7 @@ function FirstScreenStack({ navigation }: any) {
 
                         />,
                     headerStyle: {
-                        backgroundColor: '#f4511e',
+                        backgroundColor: '#da70d6',
                     },
                     headerTintColor: '#fff',
                     headerTitleStyle: {
@@ -83,13 +83,13 @@ function SecondScreenStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="MyanmarLanguage"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -115,13 +115,13 @@ function ThirdScreenStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="RefreshData"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -143,15 +143,15 @@ function ThirdScreenStack({ navigation }: any) {
 function FourthScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
-            initialRouteName="OtherApps"
+            initialRouteName="User"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -159,10 +159,10 @@ function FourthScreenStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="OtherApps"
-                component={OtherApps}
+                name="User List"
+                component={User}
                 options={{
-                    title: 'OtherApps Page',
+                    title: 'User List',
 
                 }} />
 
@@ -180,7 +180,7 @@ function FifthScreenStack({ navigation }: any) {
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -203,13 +203,13 @@ function SixthScreenStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="AboutUs"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -232,13 +232,13 @@ function RegisterStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="Register"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -261,13 +261,13 @@ function ProfileStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="Profile"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={Profile}
                     />,
                 headerStyle: {
-                    backgroundColor: '#f4511e',
+                    backgroundColor: '#da70d6',
                 },
                 headerTintColor: '#fff',
                 headerTitleStyle: {
@@ -289,9 +289,15 @@ function App() {
     return (
         <NavigationContainer>
             <Drawer.Navigator initialRouteName="Home"
-                drawerContent={props => <CustomDrawer{...props} />}>
+                screenOptions={{
+                    headerShown: false,
+
+                }}
+                drawerContent={props => <CustomDrawer{...props}
+                />}>
                 <Drawer.Screen name="Home" component={FirstScreenStack}
                     options={{
+
                         drawerIcon: ({ color }) =>
                         (
                             <Image
@@ -322,6 +328,7 @@ function App() {
                     }} />
                 <Drawer.Screen name="MyanmarLanguage" component={SecondScreenStack}
                     options={{
+
                         drawerIcon: ({ color }) =>
                         (
                             <Image
@@ -348,7 +355,7 @@ function App() {
                             />
                         )
                     }} />
-                <Drawer.Screen name="OtherApps" component={FourthScreenStack}
+                <Drawer.Screen name="User List" component={FourthScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
                         (
