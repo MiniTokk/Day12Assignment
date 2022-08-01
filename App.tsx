@@ -15,7 +15,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Homescreen from './screens/Homescreen';
 import MyanmarLanguage from './screens/MyanmarLanguage';
-import RefreshData from './screens/RefreshData';
 import User from './screens/User';
 import Favourites from './screens/Favourites';
 import AboutUs from './screens/AboutUs';
@@ -98,10 +97,10 @@ function SecondScreenStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="MyanmarLanguage"
+                name="MyanmarLanguage  Page"
                 component={MyanmarLanguage}
                 options={{
-                    headerShown: false,
+
                     title: 'MyanmarLanguage',
 
                 }} />
@@ -110,36 +109,7 @@ function SecondScreenStack({ navigation }: any) {
     );
 }
 
-function ThirdScreenStack({ navigation }: any) {
-    return (
-        <Stack.Navigator
-            initialRouteName="RefreshData"
-            screenOptions={{
 
-                headerLeft: () =>
-                    <NavigationDrawerStructure
-                        navigationProps={navigation}
-                    />,
-                headerStyle: {
-                    backgroundColor: '#da70d6',
-                },
-                headerTintColor: '#fff',
-                headerTitleStyle: {
-                    fontWeight: 'bold',
-                }
-            }}>
-
-            <Stack.Screen
-                name="RefreshData"
-                component={RefreshData}
-                options={{
-                    headerShown: false,
-                    title: 'RefreshData',
-                }} />
-
-        </Stack.Navigator>
-    );
-}
 function FourthScreenStack({ navigation }: any) {
     return (
         <Stack.Navigator
@@ -159,7 +129,7 @@ function FourthScreenStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="User List"
+                name="User List  Page"
                 component={User}
                 options={{
                     title: 'User List',
@@ -174,7 +144,7 @@ function FifthScreenStack({ navigation }: any) {
         <Stack.Navigator
             initialRouteName="Favourites"
             screenOptions={{
-                headerShown: false,
+
                 headerLeft: () =>
                     <NavigationDrawerStructure
                         navigationProps={navigation}
@@ -188,10 +158,10 @@ function FifthScreenStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="Favourites"
+                name="Favourites Page"
                 component={Favourites}
                 options={{
-                    title: 'Favourites Page',
+                    title: 'Favourites',
 
                 }} />
 
@@ -217,10 +187,10 @@ function SixthScreenStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="AboutUs"
+                name="AboutUs Page"
                 component={AboutUs}
                 options={{
-                    title: 'About Us Page',
+                    title: 'About Us',
 
                 }} />
 
@@ -246,7 +216,7 @@ function RegisterStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="RegisterScreen"
+                name="RegisterScreen  Page"
                 component={Register}
                 options={{
                     title: 'RegisterScreen',
@@ -264,7 +234,7 @@ function ProfileStack({ navigation }: any) {
 
                 headerLeft: () =>
                     <NavigationDrawerStructure
-                        navigationProps={Profile}
+                        navigationProps={navigation}
                     />,
                 headerStyle: {
                     backgroundColor: '#da70d6',
@@ -275,7 +245,7 @@ function ProfileStack({ navigation }: any) {
                 }
             }}>
             <Stack.Screen
-                name="Profile"
+                name="Profile Page"
                 component={Profile}
                 options={{
                     title: 'Profile',
@@ -341,20 +311,7 @@ function App() {
                             />
                         )
                     }} />
-                <Drawer.Screen name="RefreshData" component={ThirdScreenStack}
-                    options={{
-                        drawerIcon: ({ color }) =>
-                        (
-                            <Image
-                                source={require('./assets/refresh.png')}
-                                style={{
-                                    width: 25,
-                                    height: 25,
-                                    marginLeft: 5
-                                }}
-                            />
-                        )
-                    }} />
+
                 <Drawer.Screen name="User List" component={FourthScreenStack}
                     options={{
                         drawerIcon: ({ color }) =>
